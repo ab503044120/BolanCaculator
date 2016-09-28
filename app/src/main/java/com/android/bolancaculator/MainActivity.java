@@ -42,9 +42,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private String caculate(String s) {
-        for (char c : s.toCharArray()) {
-            
-        }
         for (int i = 0; i < s.length(); i++) {
             String in = s.charAt(i) + "";
             //如果为数字
