@@ -42,8 +42,25 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private String caculate(String s) {
+        //数据分离
+        LinkedList<String> strings = new LinkedList<>();
         for (int i = 0; i < s.length(); i++) {
-            String in = s.charAt(i) + "";
+            if (!("" + s.charAt(i)).matches("[0-9*/+-\\\\(\\\\)]")) {
+                continue;
+            } else if (i < s.length() && ("" + s.charAt(i)).matches("[0-9]+")) {
+                String tmp = "";
+                while (i < s.length() && ("" + s.charAt(i)).matches("[0-9]+")) {
+                    tmp += s.charAt(i++);
+                }
+                i--;
+                strings.offer(tmp);
+            } else {
+                strings.offer("" + s.charAt(i));
+            }
+        }
+
+        for (String string : strings) {
+            String in = string + "";
             //如果为数字
             if (in.matches("[0-9]+")) {
                 s3.offer(in);
